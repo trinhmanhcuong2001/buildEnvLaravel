@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .form-input {
-            min-width: 300px;
-            display: block;
-            margin: 10px 0;
-            padding: 5px;
-        }
-
-        .btn {
-            padding: 10px;
-        }
-    </style>
-</head>
-
-<body>
+@extends('layout')
+@section('content')
     <form action="" method="POST">
         @csrf
-        <input type="text" name="title" class="form-input" value="{{ $task->title }}">
-        <input type="text" name="description" class="form-input" value="{{ $task->description }}">
-        <select name="completed" class="form-input">
-            <option value="Chưa hoàn thành" {{ $task->completed == 'Chưa hoàn thành' ? 'selected' : '' }}>Chưa hoàn
-                thành</option>
-            <option value="Hoàn thành" {{ $task->completed == 'Hoàn thành' ? 'selected' : '' }}>Hoàn thành</option>
-        </select>
-        <button type="submit" class="btn">Cập nhật</button>
-    </form>
-</body>
+        <legend>Edit Task</legend>
+        <div class="mb-3">
+            <label for="nameTextInput" class="form-label">Tên</label>
+            <input type="text" name="title" id="nameTextInput" class="form-control" placeholder="Enter Name"
+                value="{{ $task->title }}">
+        </div>
+        <div class="mb-3">
+            <label for="descriptionTextInput" class="form-label">Mô tả</label>
+            <input type="text" name="description" id="descriptionTextInput" class="form-control"
+                placeholder="Enter Description" value="{{ $task->description }}">
+        </div>
+        <div class="mb-3">
+            <label for="completedSelect" class="form-label">Trạng thái</label>
+            <select id="completedSelect" class="form-select" name="completed">
+                <option value="Chưa hoàn thành" {{ $task->completed == 'Chưa hoàn thành' ? 'selected' : '' }}>Chưa hoàn
+                    thành</option>
+                <option value="Hoàn thành" {{ $task->completed == 'Hoàn thành' ? 'selected' : '' }}>Hoàn thành</option>
+            </select>
+        </div>
 
-</html>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+@endsection
